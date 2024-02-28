@@ -1,0 +1,42 @@
+:root {
+    /* Primary */
+    --color-Very-Dark-Magenta: hsl(300, 43%, 22%);
+    --color-Soft-Pink: hsl(333, 80%, 67%);
+
+    /* Neutral */
+    --color-Dark-Grayish-Magenta: hsl(303, 10%, 53%);
+    --color-Light-Grayish-Magenta: hsl(300, 24%, 96%);
+    --color-White: hsl(0, 0%, 100%);
+
+    /* font size */
+    --font-size-11px: calc((11/16) * 1rem);
+    --font-size-15px: calc((15/16) * 1rem);
+
+    /* font weight */
+    --font-weight-400: 400;
+    --font-weight-500: 500;
+    --font-weight-700: 700;
+
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-size: var(--font-size-15px);
+    font-family: "League Spartan", sans-serif; 
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+.attribution {
+    font-size: var(--font-size-11px);
+    text-align: center;
+}
+
+.attribution a {
+    color: hsl(228, 45%, 44%);
+}
