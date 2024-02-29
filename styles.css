@@ -17,21 +17,57 @@
     --font-weight-500: 500;
     --font-weight-700: 700;
 
+    /* star */
+    --star-size: calc((20/16) *1rem);
+    --star-color: #fff;
+    --star-background: #EF9546;
+    --star-spacing: calc((3/16) * 1rem);
+
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+
+    /* border: 1px solid black; */
 }
 
 body {
+    min-height: 100vh;
     font-size: var(--font-size-15px);
-    font-family: "League Spartan", sans-serif; 
+    font-family: "League Spartan", sans-serif;
     font-optical-sizing: auto;
     font-style: normal;
 }
 
+/* ----------------------------------------------------------------- */
+/* reference article: */
+/* https://css-tricks.com/five-methods-for-five-star-ratings/ */
+/* I have also made some further changes */
+
+.ratings__stars {
+    --percent: calc(var(--rating) / 5 * 100%);
+
+    display: inline-block;
+    font-size: var(--star-size);
+    font-family: Times;  /* make sure ★ appears correctly */
+    line-height: 1;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ratings__stars::before {
+    content: '★★★★★';
+    letter-spacing: var(--star-spacing);
+    background: linear-gradient(90deg, var(--star-background) var(--percent), var(--star-color) var(--percent));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+/* ----------------------------------------------------------------- */
 .attribution {
     font-size: var(--font-size-11px);
     text-align: center;
