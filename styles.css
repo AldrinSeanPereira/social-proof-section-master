@@ -12,6 +12,7 @@
     --font-size-11px: calc((11/16) * 1rem);
     --font-size-15px: calc((15/16) * 1rem);
     --font-size-30px: calc((30/16) * 1rem);
+    --font-size-45px: calc((45/16) * 1rem);
 
     /* font weight */
     --font-weight-400: 400;
@@ -23,6 +24,7 @@
     --space-15px: calc((15/16) * 1rem);
     --space-20px: calc((20/16) * 1rem);
     --space-30px: calc((30/16) * 1rem);
+    --space-40px: calc((40/16) * 1rem);
     --space-50px: calc((50/16) * 1rem);
     --space-60px: calc((60/16) * 1rem);
 
@@ -49,56 +51,66 @@
 
 body {
     min-height: 100vh;
+    max-width: 1400px;
+
     font-size: var(--font-size-15px);
     font-family: "League Spartan", sans-serif;
     font-optical-sizing: auto;
     font-style: normal;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    display: grid;
+    justify-items: center;
 
     position: relative;
+
+    background-color: var(--color-White);
+    background-image: url(images/bg-pattern-top-mobile.svg), url(images/bg-pattern-bottom-mobile.svg);
+    background-repeat: no-repeat, no-repeat;
+    background-position: top center, bottom center;
 }
 
 main {
     width: 90%;
     max-width: var(--main-width);
     margin: var(--space-50px) 0;
+
+    display: grid;
 }
 
-.hgroup,
+.heading-group,
 .ratings {
     text-align: center;
 }
 
-.hgroup {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: var(--space-30px);
+.heading-group {
+    display: grid;
+    justify-items: center;
+    height: fit-content;
+
+    margin-bottom: var(--space-40px);
 }
 
-.hgroup__heading {
+.heading-group__heading {
     max-width: 45%;
     color: var(--color-Very-Dark-Magenta);
     font-size: var(--font-size-30px);
     margin-bottom: var(--space-20px);
 }
 
-.hgroup__para {
+.heading-group__para {
     color: var(--color-Dark-Grayish-Magenta);
 }
 
 .ratings {
-    margin-bottom: var(--space-30px);
+    display: grid;
+    row-gap: var(--space-15px);
+    margin-bottom: var(--space-40px);
 }
 
 .ratings__item {
     background-color: var(--color-Light-Grayish-Magenta);
     border-radius: var(--space-10px);
     padding: var(--space-10px);
-    margin-bottom: var(--space-15px);
 }
 
 /* reference article + extra changes made by me */
@@ -109,7 +121,8 @@ main {
 
     display: inline-block;
     font-size: var(--star-size);
-    font-family: Times;  /* make sure ★ appears correctly */
+    font-family: Times;
+    /* make sure ★ appears correctly */
     line-height: 1;
 
     display: flex;
@@ -132,21 +145,18 @@ main {
     color: var(--color-Very-Dark-Magenta);
 }
 
-/* USE GRID SYSTEM FOR ALL ITEMS  */
-
 .testimonials {
-
+    display: grid;
+    row-gap: var(--space-15px);
 }
 
-.testimonials__person {
+.testimonials__card {
     background-color: var(--color-Very-Dark-Magenta);
     padding: var(--space-30px);
     border-radius: var(--space-10px);
-
-    margin-bottom: var(--space-15px);
 }
 
-.testimonials__person-info-group {
+.testimonials__card-info-group {
     display: flex;
     position: relative;
     margin-bottom: var(--space-20px);
@@ -185,4 +195,37 @@ main {
 
 .attribution a {
     color: hsl(228, 45%, 44%);
+}
+
+@media (min-width: 1000px) {
+    body {
+        background-image: url(images/bg-pattern-top-desktop.svg), url(images/bg-pattern-bottom-desktop.svg);
+        background-repeat: no-repeat, no-repeat;
+        background-position: top left, bottom right;
+
+        grid-template-rows: repeat(2, 1fr);
+    }
+
+    .heading-group {
+        grid-row: 1;
+        justify-items: start;
+    }
+
+    .heading-group__heading {
+        font-size: var(--font-size-45px);
+        max-width: 40%;
+    }
+
+    .heading-group__para {
+        max-width: 50%;
+        text-align: left;
+    }
+
+    .ratings {
+        grid-row: 1;
+    }
+
+    .testimonials {
+        grid-row: 2;
+    }
 }
