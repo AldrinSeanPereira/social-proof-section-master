@@ -1,3 +1,6 @@
+/* --------------------------------------- */
+/* VARIABLES */
+/* --------------------------------------- */
 :root {
     /* Primary */
     --color-Very-Dark-Magenta: hsl(300, 43%, 22%);
@@ -9,10 +12,10 @@
     --color-White: hsl(0, 0%, 100%);
 
     /* font size */
-    --font-size-11px: calc((11/16) * 1rem);
     --font-size-15px: calc((15/16) * 1rem);
+    --font-size-16px: calc((16/16) * 1rem);
     --font-size-30px: calc((30/16) * 1rem);
-    --font-size-45px: calc((45/16) * 1rem);
+    --font-size-45px: calc((50/16) * 1rem);
 
     /* font weight */
     --font-weight-400: 400;
@@ -20,6 +23,7 @@
     --font-weight-700: 700;
 
     /* spacing */
+    --space-5px: calc((5/16) * 1rem);
     --space-10px: calc((10/16) * 1rem);
     --space-15px: calc((15/16) * 1rem);
     --space-20px: calc((20/16) * 1rem);
@@ -35,7 +39,11 @@
     --star-spacing: calc((3/16) * 1rem);
 
     /* others */
-    --main-width: calc((1000/16) * 1rem);
+    --body-max-width: calc((1400/16) * 1rem);
+
+    --main-max-width-tablet: calc((750/16) * 1rem);
+    --main-max-width-desktop: calc((1200/16) * 1rem);
+
     --testimonials-image-border-radius: calc((50/16) * 1rem);
     --testimonials-image-size: calc((40/16) * 1rem);
 
@@ -51,7 +59,7 @@
 
 body {
     min-height: 100vh;
-    max-width: 1400px;
+    max-width: var(--body-max-width);
 
     font-size: var(--font-size-15px);
     font-family: "League Spartan", sans-serif;
@@ -60,18 +68,21 @@ body {
 
     display: grid;
     justify-items: center;
+    justify-content: center;
+    align-content: center;
 
     position: relative;
 
     background-color: var(--color-White);
-    background-image: url(images/bg-pattern-top-mobile.svg), url(images/bg-pattern-bottom-mobile.svg);
+    background-image: url(images/bg-pattern-top-mobile.svg),
+        url(images/bg-pattern-bottom-mobile.svg);
     background-repeat: no-repeat, no-repeat;
     background-position: top center, bottom center;
 }
 
 main {
     width: 90%;
-    max-width: var(--main-width);
+    max-width: var(--main-max-width-tablet);
     margin: var(--space-50px) 0;
 
     display: grid;
@@ -82,6 +93,9 @@ main {
     text-align: center;
 }
 
+/* --------------------------------------- */
+/* HEADING GROUP */
+/* --------------------------------------- */
 .heading-group {
     display: grid;
     justify-items: center;
@@ -91,7 +105,7 @@ main {
 }
 
 .heading-group__heading {
-    max-width: 45%;
+    width: 70%;
     color: var(--color-Very-Dark-Magenta);
     font-size: var(--font-size-30px);
     margin-bottom: var(--space-20px);
@@ -99,11 +113,19 @@ main {
 
 .heading-group__para {
     color: var(--color-Dark-Grayish-Magenta);
+    font-size: var(--font-size-16px);
+    font-weight: var(--font-weight-500);
+    line-height: 1.5;
+    letter-spacing: -1px;
 }
 
+/* --------------------------------------- */
+/* RATINGS */
+/* --------------------------------------- */
 .ratings {
     display: grid;
     row-gap: var(--space-15px);
+
     margin-bottom: var(--space-40px);
 }
 
@@ -111,6 +133,11 @@ main {
     background-color: var(--color-Light-Grayish-Magenta);
     border-radius: var(--space-10px);
     padding: var(--space-10px);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 /* reference article + extra changes made by me */
@@ -129,13 +156,15 @@ main {
     justify-content: center;
     align-items: center;
 
-    margin-bottom: var(--space-10px);
+    margin-bottom: var(--space-5px);
 }
 
 .ratings__stars::before {
     content: '★★★★★';
     letter-spacing: var(--star-spacing);
-    background: linear-gradient(90deg, var(--star-background) var(--percent), var(--star-color) var(--percent));
+    background: linear-gradient(90deg,
+            var(--star-background) var(--percent),
+            var(--star-color) var(--percent));
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -144,6 +173,10 @@ main {
 .ratings__text {
     color: var(--color-Very-Dark-Magenta);
 }
+
+/* --------------------------------------- */
+/* TESTIMONIALS */
+/* --------------------------------------- */
 
 .testimonials {
     display: grid;
@@ -185,8 +218,11 @@ main {
     line-height: 1.5;
 }
 
+/* --------------------------------------- */
+/* FOOTER */
+/* --------------------------------------- */
 .attribution {
-    font-size: var(--font-size-11px);
+    font-size: var(--font-size-15px);
     text-align: center;
 
     position: absolute;
@@ -197,35 +233,111 @@ main {
     color: hsl(228, 45%, 44%);
 }
 
+/* --------------------------------------- */
+/* MEDIA QUERY */
+/* --------------------------------------- */
+
 @media (min-width: 1000px) {
     body {
-        background-image: url(images/bg-pattern-top-desktop.svg), url(images/bg-pattern-bottom-desktop.svg);
+        background-image: url(images/bg-pattern-top-desktop.svg),
+            url(images/bg-pattern-bottom-desktop.svg);
         background-repeat: no-repeat, no-repeat;
         background-position: top left, bottom right;
-
-        grid-template-rows: repeat(2, 1fr);
     }
 
+    main {
+        max-width: var(--main-max-width-desktop);
+
+        grid-template-columns: repeat(2, 1fr);
+        row-gap: var(--space-60px);
+        align-items: center;
+    }
+
+    /* --------------------------------------- */
+    /* MEDIA QUERY - HEADING GROUP */
+    /* --------------------------------------- */
     .heading-group {
         grid-row: 1;
+        grid-column: 1;
         justify-items: start;
+
+        text-align: left;
+        margin-bottom: 0;
     }
 
     .heading-group__heading {
         font-size: var(--font-size-45px);
-        max-width: 40%;
     }
 
     .heading-group__para {
-        max-width: 50%;
         text-align: left;
+        width: 70%;
     }
+
+    /* --------------------------------------- */
+    /* MEDIA QUERY - RATINGS */
+    /* --------------------------------------- */
 
     .ratings {
         grid-row: 1;
+        grid-column: 2;
+
+        margin-bottom: 0;
+
+        /* since .ratings is already a grid */
+        grid-template-columns: repeat(7, 1fr);
+        grid-template-rows: repeat(3, var(--space-50px));
     }
+
+    .ratings__item {
+        flex-direction: row;
+        justify-content: flex-start;
+    }
+
+    .ratings__item:nth-of-type(1) {
+        grid-column: 1 /span 5;
+    }
+
+    .ratings__item:nth-of-type(2) {
+        grid-row: 2;
+        grid-column: 2 /span 5;
+    }
+
+    .ratings__item:nth-of-type(3) {
+        grid-row: 3;
+        grid-column: 3 /span 5;
+    }
+
+    .ratings__stars {
+        margin: 0 var(--space-20px);
+    }
+
+    /* --------------------------------------- */
+    /* MEDIA QUERY - TESTIMONIALS */
+    /* --------------------------------------- */
 
     .testimonials {
         grid-row: 2;
+        grid-column: 1 / span 2;
+        align-self: center;
+
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(13, var(--space-20px));
+        column-gap: var(--space-30px);
+        row-gap: 0;
+    }
+
+    .testimonials__card:nth-of-type(1) {
+        grid-row: 1 / span 11;
+    }
+
+    .testimonials__card:nth-of-type(2) {
+        grid-row: 2 / span 11;
+        grid-column: 2;
+    }
+
+    .testimonials__card:nth-of-type(3) {
+        grid-row: 3 / span 11;
+        grid-column: 3;
     }
 }
